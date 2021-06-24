@@ -1,0 +1,10 @@
+[Plugin]
+Loader=python
+Module=rbmqtt
+IAge=2
+Name=RhythmBox MQTT
+Depends=rb
+Description=Post 
+Authors=Pete Rijks <prijks@esgeroth.org>
+Copyright=Copyright © 2021 Peter Rijks
+Website=https://www.esgeroth.org/software/rb-mqtt-plugin/
