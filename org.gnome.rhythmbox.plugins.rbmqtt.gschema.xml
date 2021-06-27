@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+    <schema path="/org/gnome/rhythmbox/plugins/rbmqtt/" id="org.gnome.rhythmbox.plugins.rbmqtt">
+        <key type="s" name="mqtt-server">
+            <default>""</default>
+            <summary>MQTT Server</summary>
+            <description>Server to connect to</description>
+        </key>
+        <key type="s" name="mqtt-port">
+            <default>"1883"</default>
+            <summary>MQTT Port</summary>
+            <description>Port on server to connect to</description>
+        </key>
+        <key type="s" name="mqtt-username">
+            <default>""</default>
+            <summary>MQTT Username</summary>
+            <description>Username to connect with</description>
+        </key>
+        <key type="s" name="mqtt-password">
+            <default>""</default>
+            <summary>MQTT Password</summary>
+            <description>Password to connect with</description>
+        </key>
+        <key type="s" name="base-topic">
+            <default>""</default>
+            <summary>Base Topic</summary>
+            <description>Topic path to prepend to individual topics</description>
+        </key>
+    </schema>
+</schemalist>
