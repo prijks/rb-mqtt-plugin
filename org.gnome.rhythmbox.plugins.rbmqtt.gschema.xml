@@ -26,5 +26,10 @@
             <summary>Base Topic</summary>
             <description>Topic path to prepend to individual topics</description>
         </key>
+        <key type="b" name="retain">
+            <default>true</default>
+            <summary>Retain</summary>
+            <description>Whether messages should be published with the retain flag</description>
+        </key>
     </schema>
 </schemalist>

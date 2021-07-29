@@ -50,7 +50,7 @@ Author: Peter Rijks
       </packing>
     </child>
     <child>
-      <!-- n-columns=2 n-rows=5 -->
+      <!-- n-columns=2 n-rows=6 -->
       <object class="GtkGrid" id="grid1">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
@@ -154,7 +154,7 @@ Author: Peter Rijks
             <property name="top-attach">3</property>
           </packing>
         </child>
-                <child>
+        <child>
           <object class="GtkLabel" id="label5">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
@@ -176,6 +176,31 @@ Author: Peter Rijks
           <packing>
             <property name="left-attach">1</property>
             <property name="top-attach">4</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="label6">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">_Retain:</property>
+            <property name="use-underline">True</property>
+            <property name="xalign">0</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">5</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkCheckButton" id="retain">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">False</property>
+            <property name="draw-indicator">True</property>
+          </object>
+          <packing>
+            <property name="left-attach">1</property>
+            <property name="top-attach">5</property>
           </packing>
         </child>
       </object>

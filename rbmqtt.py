@@ -18,6 +18,7 @@ class RbMqttPlugin (GObject.Object, Peas.Activatable, PeasGtk.Configurable):
         self.username = ""
         self.password = ""
         self.basetopic = ""
+        self.retain = False
 
     def do_activate(self):
         print(f'Activating plugin {self.plugin_name}')
@@ -45,6 +46,7 @@ class RbMqttPlugin (GObject.Object, Peas.Activatable, PeasGtk.Configurable):
 
     def disconnect_mqtt(self):
         self.client.loop_stop()
+        self.client.disconnect()
         self.client = None
 
     def connect_mqtt(self):
@@ -67,6 +69,7 @@ class RbMqttPlugin (GObject.Object, Peas.Activatable, PeasGtk.Configurable):
             self.username = self.settings.get_string("mqtt-username")
             self.password = self.settings.get_string("mqtt-password")
             self.basetopic = self.settings.get_string("base-topic")
+            self.retain = self.settings.get_boolean("retain")
             if (self.server and self.port > 0):
                 self.connect_mqtt()
         self.settings_timer = 0
@@ -101,7 +104,7 @@ class RbMqttPlugin (GObject.Object, Peas.Activatable, PeasGtk.Configurable):
     def publish_subtopic(self, subtopic, payload):
         if (self.client):
             topic = f'{self.basetopic}/{subtopic}'
-            self.client.publish(topic, payload)
+            self.client.publish(topic, payload, 0, self.retain)
 
     def publish_song_details(self, entry):
         if (entry is None):
@@ -124,6 +127,7 @@ class RbMqttPlugin (GObject.Object, Peas.Activatable, PeasGtk.Configurable):
     mqtt_username_entry = GObject.Property(type=Gtk.Entry, default=None)
     mqtt_password_entry = GObject.Property(type=Gtk.Entry, default=None)
     base_topic_entry = GObject.Property(type=Gtk.Entry, default=None)
+    retain_entry = GObject.Property(type=Gtk.CheckButton, default=None)
 
     def do_create_configure_widget(self):
         self.settings = Gio.Settings.new("org.gnome.rhythmbox.plugins.rbmqtt")
@@ -151,5 +155,9 @@ class RbMqttPlugin (GObject.Object, Peas.Activatable, PeasGtk.Configurable):
         self.base_topic_entry = self.builder.get_object("base-topic")
         self.settings.bind(
             "base-topic", self.base_topic_entry, "text", 0)
+
+        self.retain_entry = self.builder.get_object("retain")
+        self.settings.bind(
+            "retain", self.retain_entry, "active", 0)
 
         return content
